@@ -8,7 +8,7 @@ function randomNum(start, end) {
   return Math.floor(Math.random() * (end - start + 1)) + start;
 }
 
-// Проверка длины строки
+// Проверка длины заданной строки
 function checkString(str, maxLength) {
     if (str.length <= maxLength) {
       return true;
