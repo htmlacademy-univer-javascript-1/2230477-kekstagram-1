@@ -16,5 +16,5 @@ function checkString(str, maxLength) {
   return false;
 }
 
-console.log(randomNum(1, 10));
-console.log(checkString('abc', 10));
+randomNum(1, 10);
+checkString('abc', 10);
