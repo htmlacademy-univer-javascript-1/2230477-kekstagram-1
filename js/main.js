@@ -1,4 +1,4 @@
-import {generatePosts} from './data';
+import {generatePosts} from './data.js';
+import {generateImage} from './renderImage.js';
 
-generatePosts();
-
+generateImage(generatePosts());
