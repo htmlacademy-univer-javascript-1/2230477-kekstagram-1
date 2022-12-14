@@ -13,11 +13,19 @@ const NAMES = ['Сергей', 'Мария', 'Иван', 'Аиша', 'Алекс
 
 const DESCRIPTIONS = ['Ну я', 'Я', 'Это я', 'Ну как я вам'];
 
-const createComment = {
-  id: randomNum(1, 100000000),
+const createComment = (commentId) => ({
+  id: commentId,
   avatar:  `img/avatar-${randomNum(1, 6)}.svg`,
   message: MESSAGES[randomNum(1, MESSAGES.length - 1)],
   name: NAMES[randomNum(1, NAMES.length - 1)]
+});
+
+const generateComments = (commentsNum) => {
+  const comments = [];
+  for (let i = 1; i <= commentsNum; i++) {
+    comments.push(createComment(randomNum(1, 1000000)));
+  }
+  return comments;
 };
 
 const createPost = (id) => ({
@@ -25,7 +33,7 @@ const createPost = (id) => ({
   url: `photos/${id}.jpg`,
   description: DESCRIPTIONS[randomNum(1, DESCRIPTIONS.length - 1)],
   likes: randomNum(15, 200),
-  comments: createComment
+  comments: generateComments(randomNum(1, 10))
 });
 
 export const generatePosts = () => {
