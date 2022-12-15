@@ -55,10 +55,6 @@ const onImageModalKeydown = (evt) => {
   }
 };
 
-const onImageModalCloseClick = () => {
-  closeImageModal();
-};
-
 const onCommentsLoadButtonClick = () => {
   renderComments(COMMENTS_COUNT_STEP);
 };
@@ -81,10 +77,10 @@ export const openImageModal = ({url,likes,comments,description}) => {
     commentsLoaderElement.classList.add('hidden');
   } else {
     commentsLoaderElement.classList.remove('hidden');
-    commentsLoaderElement.addEventListener('click',onCommentsLoadButtonClick);
+    commentsLoaderElement.addEventListener('click', onCommentsLoadButtonClick);
   }
   const initCommentsCount = currentCommentsCount <= INIT_COMMENTS_COUNT ? currentCommentsCount : INIT_COMMENTS_COUNT;
   renderComments(initCommentsCount);
   document.addEventListener('keydown', onImageModalKeydown);
-  buttonCloseElement.addEventListener('click', onImageModalCloseClick, {once: true});
+  buttonCloseElement.addEventListener('click', closeImageModal);
 };
