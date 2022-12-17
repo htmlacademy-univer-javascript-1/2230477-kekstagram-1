@@ -1,6 +1,6 @@
-import {generatePosts} from './data.js';
-import {generateImage} from './render-image.js';
+import {renderImages} from './render-image.js';
 import {renderFileUpload} from './upload-image.js';
+import {getData} from './api.js';
 
-generateImage(generatePosts());
+getData(renderImages);
 renderFileUpload();

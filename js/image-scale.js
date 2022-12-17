@@ -1,4 +1,4 @@
-const DEFAULT_VALUE = 50;
+const DEFAULT_VALUE = 100;
 const MIN_VALUE = 25;
 const MAX_VALUE = 100;
 const STEP_VALUE = 25;
