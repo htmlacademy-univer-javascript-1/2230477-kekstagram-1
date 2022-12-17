@@ -3,6 +3,7 @@ import {pristine} from './validator.js';
 import {resetScale, renderScale} from './image-scale.js';
 import {renderSlider, resetEffect} from './image-effects.js';
 import {sendData} from './api.js';
+import {onImgInputChange} from './photo-input.js';
 
 const form = document.querySelector('#upload-select-image');
 const fileUploadButton = document.querySelector('#upload-file');
@@ -26,6 +27,7 @@ const resetAll = () => {
   pristine.reset();
   resetScale();
   resetEffect();
+  submitFormElement.textContent = 'Опубликовать';
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
 };
@@ -38,8 +40,10 @@ function closeOverlay() {
 
 const createPostImageForm = () => {
   renderSlider();
-  fileUploadButton.addEventListener('change', () => {
-    renderScale();
+  renderScale();
+  fileUploadButton.addEventListener('change', (evt) => {
+    evt.preventDefault();
+    onImgInputChange(evt);
     document.addEventListener('keydown', onEscKeydown);
     closeFormButton.addEventListener('click', closeOverlay, {once: true});
     document.body.classList.add('modal-open');
