@@ -1,4 +1,4 @@
-import {openImageModal} from './renderBigImage.js';
+import {openImageModal} from './render-big-image.js';
 
 const imageTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const imageList = document.createDocumentFragment();
