@@ -1,10 +1,14 @@
 import {errorPhotos} from './data.js';
+import {createEventListenersFilter} from './render-image.js';
 
 const getData = (render) => {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
     .then((photos) => render(photos))
-    .catch(() => render(errorPhotos));
+    .catch(() => render(errorPhotos))
+    .then(() => {
+      createEventListenersFilter();
+    });
 };
 
 const sendData = (onFail, onSuccess, body) => {

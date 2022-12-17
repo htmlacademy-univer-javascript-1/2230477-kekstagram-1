@@ -1,7 +1,10 @@
 import {openImageModal} from './render-big-image.js';
+import {debounce} from './util.js';
 
 const imageTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const imageList = document.createDocumentFragment();
+const filterButtons = document.querySelectorAll('.img-filters__button');
+const imgFilters = document.querySelector('.img-filters');
 let myImages;
 
 const onImageModalClick = (evt) => {
@@ -48,4 +51,18 @@ export const renderImages = (images, option) =>{
   myImages = images;
   document.querySelector('.pictures').appendChild(imageList);
   document.querySelector('.pictures').addEventListener('click', onImageModalClick);
+};
+
+const debounceRenderedPhotos = debounce(renderImages, 500);
+
+export const createEventListenersFilter = () => {
+  imgFilters.classList.remove('img-filters--inactive');
+  filterButtons.forEach((filterButton) => {
+    filterButton.addEventListener('click', () => {
+      filterButtons.forEach((button) =>
+        button.classList.remove('img-filters__button--active'));
+      filterButton.classList.add('img-filters__button--active');
+      debounceRenderedPhotos(myImages, filterButton.id);
+    });
+  });
 };
